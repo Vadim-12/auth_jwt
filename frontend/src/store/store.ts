@@ -11,6 +11,8 @@ export default class Store {
 	isAuth = false
 	isLoading = false
 	posts = [] as IPost[]
+	users = [] as IUser[]
+	error = ''
 
 	constructor() {
 		makeAutoObservable(this)
@@ -32,6 +34,14 @@ export default class Store {
 		this.posts = posts
 	}
 
+	setUsers(users: IUser[]) {
+		this.users = users
+	}
+
+	setError(error: string) {
+		this.error = error
+	}
+
 	async login(email: string, password: string) {
 		try {
 			const response = await AuthService.login(email, password)
@@ -40,6 +50,7 @@ export default class Store {
 			this.setAuth(true)
 			this.setUser(response.data.user)
 		} catch (e: any) {
+			this.setError(e.response?.data?.message)
 			console.log(e.response?.data?.message)
 		}
 	}
@@ -52,6 +63,7 @@ export default class Store {
 			this.setAuth(true)
 			this.setUser(response.data.user)
 		} catch (e: any) {
+			this.setError(e.response?.data?.message)
 			console.log(e.response?.data?.message)
 		}
 	}
@@ -64,6 +76,7 @@ export default class Store {
 			this.setAuth(false)
 			this.setUser({} as IUser)
 		} catch (e: any) {
+			this.setError(e.response?.data?.message)
 			console.log(e.response?.data?.message)
 		}
 	}
@@ -78,6 +91,7 @@ export default class Store {
 			this.setUser(response.data.user)
 			console.log(response.data)
 		} catch (e: any) {
+			this.setError(e.response?.data?.message)
 			console.log(e.response?.data?.message)
 		} finally {
 			this.setLoading(false)

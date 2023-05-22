@@ -1,1 +1,150 @@
-:root{font-size:1em}html,body,header,main,footer{padding:0;margin:0;width:100%}.container{width:80%;margin:0 auto}
+:root {
+  font-size: 1em;
+  font-family: "Roboto", sans-serif;
+}
+
+input:active, input:hover, input:focus, textarea:active, textarea:hover, textarea:focus {
+  outline: 0;
+  outline-offset: 0;
+}
+input:active, input:focus, textarea:active, textarea:focus {
+  border: 1px solid grey;
+  transition: cubic-bezier(0.17, 0.67, 0.88, 0.21) 0.5s;
+}
+
+html, body, header, main, footer {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.loader-wrap {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #161519;
+}
+
+.auth-wrapper {
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.auth-wrapper .auth-form {
+  width: 400px;
+}
+.auth-wrapper .auth-form input {
+  width: calc(100% - 16px);
+  height: 40px;
+  font-size: 1.2em;
+  padding-left: 10px;
+}
+.auth-wrapper .auth-form input:not(:first-child) {
+  margin-top: 15px;
+}
+.auth-wrapper .auth-form .auth-btns {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.auth-wrapper .auth-form .auth-btns button {
+  font-size: 1em;
+  width: calc(50% - 5px);
+  background: #B02418;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 1em 0;
+  margin-top: 15px;
+}
+.auth-wrapper .auth-form .auth-btns button:hover {
+  color: white;
+  transition: 0.1s;
+}
+
+.ui-btns {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.ui-btns button {
+  border: none;
+  background: #2864be;
+  padding: 0.5em 1em;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 1.1em;
+}
+.ui-btns button:hover {
+  color: white;
+  transition: 0.1s;
+}
+.ui-btns button:not(:first-child) {
+  margin-left: 1em;
+}
+
+.create-post-form {
+  margin-top: 20px;
+}
+.create-post-form textarea {
+  width: 100%;
+  height: 150px;
+  font-size: 1.5em;
+  padding: 8px;
+  box-sizing: border-box;
+}
+.create-post-form button[type=submit] {
+  display: block;
+  border: none;
+  border-radius: 4px;
+  background: orange;
+  padding: 0.5em 1.5em;
+  font-size: 1.1em;
+  margin: 0.8em auto 0;
+  font-weight: bold;
+  cursor: pointer;
+}
+.create-post-form button[type=submit]:hover {
+  color: white;
+  transition: 0.1s;
+}
+
+.posts {
+  width: 100%;
+  padding: 0;
+  margin-top: 40px;
+}
+.posts .post {
+  list-style-type: none;
+  border: 2px solid black;
+  border-radius: 8px;
+  padding: 1em;
+}
+.posts .post-author {
+  font-weight: normal;
+}
+.posts .post .prop-name {
+  font-weight: bold;
+}
+.posts .post-content {
+  margin-top: 10px;
+  border-top: 1px solid #9a9a9a;
+  padding-top: 15px;
+  line-height: 1.8em;
+}
+.posts .post:not(:first-child) {
+  margin-top: 20px;
+}
+
+/*# sourceMappingURL=index.css.map */

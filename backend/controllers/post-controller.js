@@ -10,7 +10,7 @@ class PostController {
 		}
 	}
 
-	async addNewPost(req, res, next) {
+	async createPost(req, res, next) {
 		try {
 			const {text, authorId} = req.body
 			const post = await postService.addNewPost(text, authorId)

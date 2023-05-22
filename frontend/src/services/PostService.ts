@@ -7,8 +7,11 @@ export default class PostService {
     return $api.get<IPost[]>('/posts')
   }
 
-  static createPost(): Promise<AxiosResponse<IPost>> {
-    return $api.post<IPost>('/posts')
+  static createPost(authorId: string, text: string): Promise<AxiosResponse<IPost>> {
+    return $api.post<IPost>('/posts', {
+      authorId,
+      text
+    })
   }
 
   static updatePost(postId: string, text: string): Promise<AxiosResponse<IPost>> {

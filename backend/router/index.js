@@ -17,7 +17,7 @@ router.get('/refresh/', userController.refresh)
 router.get('/users', authMiddleware, userController.getUsers)
 
 router.get('/posts', authMiddleware, postController.getPosts) // получение всех постов
-router.post('/posts', authMiddleware, postController.addNewPost) // создание поста
+router.post('/posts', authMiddleware, postController.createPost) // создание поста
 router.delete('/posts/:id', authMiddleware, postController.deletePost) // удаление поста
 router.put('/posts/:id', authMiddleware, postController.updatePost) // редактирование поста
 

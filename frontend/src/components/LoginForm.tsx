@@ -8,7 +8,7 @@ const LoginForm: FC = () => {
 	const {store} = useContext(Context)
 
 	return (
-		<div>
+		<div className='auth-form'>
 			<input
 				onChange={e => setEmail(e.target.value)}
 				value={email}
@@ -21,12 +21,17 @@ const LoginForm: FC = () => {
 				type="password"
 				placeholder="Пароль"
 			/>
-			<button onClick={() => store.login(email, password)}>
-				Вход
-			</button>
-			<button onClick={() => store.registration(email, password)}>
-				Регистрация
-			</button>
+			<div className='auth-btns'>
+				<button onClick={() => store.login(email, password)}>
+					Вход
+				</button>
+				<button onClick={() => store.registration(email, password)}>
+					Регистрация
+				</button>
+			</div>
+			{store.error && (
+				<p className='auth-error'>{store.error}</p>
+			)}
 		</div>
 	)
 }

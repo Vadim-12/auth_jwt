@@ -1,5 +1,18 @@
+$key_color: #B02418;
+
 :root {
 	font-size: 1em;
+	font-family: 'Roboto', sans-serif;
+}
+input, textarea {
+	&:active, &:hover, &:focus {
+		outline: 0;
+		outline-offset: 0;
+	}
+	&:active, &:focus {
+		border: 1px solid grey;
+		transition: cubic-bezier(.17,.67,.88,.21) 0.5s;
+	}
 }
 html, body, header, main, footer {
 	padding: 0;
@@ -9,4 +22,134 @@ html, body, header, main, footer {
 .container {
 	width: 80%;
 	margin: 0 auto;
+}
+.loader-wrap {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: #161519;
+}
+.auth-wrapper {
+	padding: 0;
+	margin: 0;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	.auth-form {
+		width: 400px;
+
+		input {
+			width: calc(100% - 16px);
+			height: 40px;
+			font-size: 1.2em;
+			padding-left: 10px;
+
+			&:not(:first-child) {
+				margin-top: 15px;
+			}
+		}
+		.auth-btns {
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+
+			button {
+				font-size: 1em;
+				width: calc(50% - 5px);
+				background: $key_color;
+				border: none;
+				border-radius: 4px;
+				cursor: pointer;
+				padding: 1em 0;
+				margin-top: 15px;
+
+				&:hover {
+					color: white;
+					transition: 0.1s;
+				}
+			}
+		}
+	}
+}
+.ui-btns {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+
+	button {
+		border: none;
+		background: #2864be;
+		padding: 0.5em 1em;
+		border-radius: 3px;
+		cursor: pointer;
+		font-size: 1.1em;
+
+		&:hover {
+			color: white;
+			transition: 0.1s;
+		}
+		&:not(:first-child) {
+			margin-left: 1em;
+		}
+	}
+}
+.create-post-form {
+	margin-top: 20px;
+
+	textarea {
+		width: 100%;
+		height: 150px;
+		font-size: 1.5em;
+		padding: 8px;
+		box-sizing: border-box;
+	}
+	button[type='submit'] {
+		display: block;
+		border: none;
+		border-radius: 4px;
+		background: orange;
+		padding: 0.5em 1.5em;
+		font-size: 1.1em;
+		margin: 0.8em auto 0;
+		font-weight: bold;
+		cursor: pointer;
+
+		&:hover {
+			color: white;
+			transition: 0.1s;
+		}
+	}
+}
+.posts {
+	width: 100%;
+	padding: 0;
+	margin-top: 40px;
+
+	.post {
+		list-style-type: none;
+		border: 2px solid black;
+		border-radius: 8px;
+		padding: 1em;
+
+		&-author {
+			font-weight: normal;
+		}
+		.prop-name {
+			font-weight: bold;
+		}
+		&-content {
+			margin-top: 10px;
+			border-top: 1px solid #9a9a9a;
+			padding-top: 15px;
+			line-height: 1.8em;
+		}
+		&:not(:first-child) {
+			margin-top: 20px;
+		}
+	}
 }
