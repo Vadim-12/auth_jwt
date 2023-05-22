@@ -1,6 +1,5 @@
 const ApiError = require('../exceptions/api-error')
 const PostModel = require('../models/post-model')
-const UserModel = require('../models/user-model')
 
 class PostService {
 	async getAllPosts() {
@@ -8,12 +7,8 @@ class PostService {
 		return posts
 	}
 
-	async addNewPost(date, text, authorEmail) {
-		const user = await UserModel.findOne({email: authorEmail})
-		if (!user) {
-			throw ApiError.BadRequest(`Пользователя с почтовым адресом ${authorEmail} не существует`)
-		}
-		const post = await PostModel.create({date, text, author: user._id})
+	async addNewPost(text, authorId) {
+		const post = await PostModel.create({text, author: authorId})
 		return post
 	}
 
@@ -27,7 +22,6 @@ class PostService {
 		if (!post) {
 			throw ApiError.BadRequest('Такого поста не существует')
 		}
-		console.log(postId, text)
 		post.text = text
 		post.save()
 		return post

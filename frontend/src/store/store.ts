@@ -4,11 +4,13 @@ import AuthService from "../services/AuthService";
 import axios from "axios";
 import { AuthResponse } from "../models/response/AuthResponse";
 import { API_URL } from "../http";
+import {IPost} from "../models/IPost";
 
 export default class Store {
 	user = {} as IUser
 	isAuth = false
 	isLoading = false
+	posts = [] as IPost[]
 
 	constructor() {
 		makeAutoObservable(this)
@@ -24,6 +26,10 @@ export default class Store {
 
 	setLoading(value: boolean) {
 		this.isLoading = value
+	}
+
+	setPosts(posts: IPost[]) {
+		this.posts = posts
 	}
 
 	async login(email: string, password: string) {

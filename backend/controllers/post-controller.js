@@ -12,8 +12,8 @@ class PostController {
 
 	async addNewPost(req, res, next) {
 		try {
-			const {date, text, email} = req.body
-			const post = await postService.addNewPost(date, text, email)
+			const {text, authorId} = req.body
+			const post = await postService.addNewPost(text, authorId)
 			return res.json(post)
 		} catch (e) {
 			next(e)

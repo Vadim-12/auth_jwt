@@ -4,22 +4,26 @@ import { Context } from '.'
 import { observer } from 'mobx-react-lite'
 import { IUser } from './models/IUser'
 import UserService from './services/UserService'
+import PostService from "./services/PostService";
+import {IPost} from "./models/IPost";
 
 function App() {
   const {store} = useContext(Context)
   const [users, setUsers] = useState<IUser[]>([])
+  const [posts, setPosts] = useState<IPost[]>([])
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
-      console.log('check auth')
       store.checkAuth()
     }
   }, [])
 
-  async function getUsers() {
+  async function getPosts() {
     try {
-      const response = await UserService.fetchUsers()
-      setUsers(response.data)
+      const postsResponse = await PostService.fetchPosts()
+      setPosts(postsResponse.data)
+      const usersResponse = await UserService.fetchUsers()
+      setUsers(usersResponse.data)
     } catch (e) {
       console.log(e)
     }
@@ -39,12 +43,16 @@ function App() {
       <h1>{store.user.isActivated ? 'Аккаунт подтвержден по почте' : 'ПОДТВЕРДИТЕ АККАУНТ!!!'}</h1>
       <button onClick={() => store.logout()}>Выйти</button>
       <div>
-        <button onClick={getUsers}>Получить пользователей</button>
+        <button onClick={getPosts}>Загрузить посты</button>
         <ul>
           {
-            users.map(user => (
-              <li key={user.email}>{user.email}</li>
-            ))
+            posts.map(post => {
+              const user = users.find(user => user.id === post.author.id)
+              return (
+                <li key={post.id}>{`${post.date} - ${user ? user.email : ''} - ${post.text}`}</li>
+              )
+
+            })
           }
         </ul>
       </div>
