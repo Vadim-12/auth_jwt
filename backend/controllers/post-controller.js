@@ -13,7 +13,8 @@ class PostController {
 	async createPost(req, res, next) {
 		try {
 			const {text, authorId} = req.body
-			const post = await postService.addNewPost(text, authorId)
+			console.log(text, authorId)
+			const post = await postService.createPost(text, authorId)
 			return res.json(post)
 		} catch (e) {
 			next(e)

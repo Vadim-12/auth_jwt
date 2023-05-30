@@ -6,7 +6,7 @@ const PostSchema = new Schema({
 		default: Date.now()
 	},
 	text: {type: String, required: true},
-	author: {type: Schema.Types.ObjectId, ref: 'User'},
+	authorId: {type: Schema.Types.ObjectId, ref: 'User'},
 })
 
 module.exports = model('Post', PostSchema)

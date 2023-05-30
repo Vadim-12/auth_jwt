@@ -39,10 +39,12 @@ class UserService {
 		if (!user) {
 			throw ApiError.BadRequest('Пользователь с таким email не найден')
 		}
+
 		const isPassEquals = await bcrypt.compare(password, user.password)
 		if (!isPassEquals) {
 			throw ApiError.BadRequest('Неверный пароль')
 		}
+
 		const userDto = new UserDto(user)
 		const tokens = tokenService.generateTokens({...userDto})
 
@@ -65,11 +67,12 @@ class UserService {
 		if (!userData || !tokenFromDb) {
 			throw ApiError.UnauthorizedError()
 		}
+		
 		const user = await UserModel.findById(userData.id)
 		const userDto = new UserDto(user)
 		const tokens = tokenService.generateTokens({...userDto})
-
-		await tokenService.saveToken(userDto.id, tokens.refreshToken)
+		
+		await tokenService.saveToken(userDto._id, tokens.refreshToken)
 		return {...tokens, user: userDto}
 	}
 

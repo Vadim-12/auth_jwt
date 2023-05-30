@@ -7,8 +7,8 @@ class PostService {
 		return posts
 	}
 
-	async addNewPost(text, authorId) {
-		const post = await PostModel.create({text, author: authorId})
+	async createPost(text, authorId) {
+		const post = await PostModel.create({text, authorId})
 		return post
 	}
 
